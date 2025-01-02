@@ -1,0 +1,21 @@
+services:
+    database:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: therapy-hub-sql
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=4Jgz2HmDKS
+            - MSSQL_PID=Developer
+        ports:
+            - 1433:1433
+        volumes:
+            - sqlvolume:/var/opt/mssql
+        networks:
+            - app
+
+volumes:
+    sqlvolume:
+
+networks:
+    app:
+        driver: bridge

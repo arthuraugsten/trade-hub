@@ -1,0 +1,6 @@
+@TradeHub.Api_HostAddress = https://localhost:5000
+
+GET {{TradeHub.Api_HostAddress}}/products
+Accept: application/json
+
+###

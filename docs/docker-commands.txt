@@ -1,0 +1,20 @@
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+
+
+dotnet ef migrations add Init -c ProductDbContext -p ..\..\Modules\Products\TradeHub.Products.Infrastructure\TradeHub.Products.Infrastructure.csproj -s .\TradeHub.Api.csproj
+dotnet ef database update -c ProductDbContext -p ..\..\Modules\Products\TradeHub.Products.Infrastructure\TradeHub.Products.Infrastructure.csproj -s .\TradeHub.Api.csproj
+
+docker rm -f $(docker ps -qa)
+docker volume prune -f
+docker network prune
+
+
+Server=TradeHubSqlServer,1433;Database=Products;User ID=sa;Password=4Jgz2HmDKS;TrustServerCertificate=false;Encrypt=false
+
+
+
+# Next Steps
+
+1. Message Bus
+2. Integration Events
+3. Outbox Pattern
